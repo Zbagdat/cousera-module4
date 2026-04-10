@@ -1,27 +1,17 @@
-function loadCategories() {
-  var xhr = new XMLHttpRequest();
-  var url = "https://coursera-jhu-default-rtdb.firebaseio.com/categories.json";
+(function () {
 
-  xhr.open("GET", url, true);
+  var names = ["Yaakov", "John", "Jen", "Jason", "Paul", "Frank", "Larry", "Paula", "Laura", "Jim"];
 
-  xhr.onload = function () {
-    if (xhr.status === 200) {
-      var data = JSON.parse(xhr.responseText);
-      displayCategories(data);
+  for (var i = 0; i < names.length; i++) {
+
+    var firstLetter = names[i].charAt(0).toLowerCase();
+
+    if (firstLetter === 'j') {
+      byeSpeaker.speak(names[i]);
+    } else {
+      helloSpeaker.speak(names[i]);
     }
-  };
 
-  xhr.send();
-}
-
-function displayCategories(categories) {
-  var html = "<ul>";
-
-  for (var i = 0; i < categories.length; i++) {
-    html += "<li>" + categories[i].name + " (" + categories[i].short_name + ")</li>";
   }
 
-  html += "</ul>";
-
-  document.getElementById("content").innerHTML = html;
-}
+})();
